@@ -20,7 +20,7 @@ class _HttpStudyState extends State<HttpStudy> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('基于Http实现网络操作-Flutter网络开发')),
+      appBar: AppBar(title: const Text('基于Http实现网络操作')),
       body: Column(
         children: [
           _doGetBtn(),
