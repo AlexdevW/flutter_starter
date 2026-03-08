@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_start/data_modal.dart';
+import 'package:flutter_start/starter/data_modal.dart';
 
 class JsonParsing extends StatefulWidget {
   const JsonParsing({super.key});

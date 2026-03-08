@@ -69,7 +69,7 @@
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter_start/data_modal.dart';
+import 'package:flutter_start/starter/data_modal.dart';
 import 'package:http/http.dart' as http;
 
 ///Future与FutureBuilder实战应用
