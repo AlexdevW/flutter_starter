@@ -4,6 +4,8 @@ import 'package:flutter_start/dao/login_dao.dart';
 import 'package:flutter_start/model/home_model.dart';
 import 'package:flutter_start/util/view_util.dart';
 import 'package:flutter_start/widget/banner_widget.dart';
+import 'package:flutter_start/widget/grid_nav_widget.dart';
+import 'package:flutter_start/widget/local_nav_widget.dart';
 
 class HomePage extends StatefulWidget {
   static Config? configModel;
@@ -20,6 +22,7 @@ class _HomePageState extends State<HomePage>
   List<CommonModel> localNavList = [];
   List<CommonModel> bannerList = [];
   List<CommonModel> subNavList = [];
+  GridNav? gridNavModel;
   bool _loading = true;
 
   // final List<String> bannerList = [
@@ -54,6 +57,13 @@ class _HomePageState extends State<HomePage>
             child: const Text('test'),
           ),
         ),
+        // bottom line
+        Container(
+          height: appBarAlpha > 0.2 ? 0.5 : 0,
+          decoration: const BoxDecoration(
+            boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 0.5)],
+          ),
+        ),
       ],
     );
   }
@@ -61,6 +71,8 @@ class _HomePageState extends State<HomePage>
   ListView get _listView => ListView(
     children: [
       BannerWidget(bannerList: bannerList),
+      LocalNav(localNavList: localNavList),
+      if (gridNavModel != null) GridNavWidget(gridNavModel: gridNavModel!),
       // _logoutBtn,
     ],
   );
@@ -133,6 +145,7 @@ class _HomePageState extends State<HomePage>
         subNavList = model.subNavList ?? [];
         bannerList = model.bannerList ?? [];
         localNavList = model.localNavList ?? [];
+        gridNavModel = model.gridNav;
         _loading = false;
       });
     } catch (e) {
