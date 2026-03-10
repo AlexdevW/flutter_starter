@@ -6,6 +6,7 @@ import 'package:flutter_start/util/view_util.dart';
 import 'package:flutter_start/widget/banner_widget.dart';
 import 'package:flutter_start/widget/grid_nav_widget.dart';
 import 'package:flutter_start/widget/local_nav_widget.dart';
+import 'package:flutter_start/widget/sub_nav_widget.dart';
 
 class HomePage extends StatefulWidget {
   static Config? configModel;
@@ -73,6 +74,7 @@ class _HomePageState extends State<HomePage>
       BannerWidget(bannerList: bannerList),
       LocalNav(localNavList: localNavList),
       if (gridNavModel != null) GridNavWidget(gridNavModel: gridNavModel!),
+      SubNavWidget(subNavList: subNavList),
       // _logoutBtn,
     ],
   );
