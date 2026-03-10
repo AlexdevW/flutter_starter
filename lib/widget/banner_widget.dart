@@ -1,10 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_start/model/home_model.dart';
 import 'package:flutter_start/util/screen_adapter_helper.dart';
 
 ///封装的艺术之轮播图组件的实现
 class BannerWidget extends StatefulWidget {
-  final List<String> bannerList;
+  final List<CommonModel> bannerList;
 
   const BannerWidget({super.key, required this.bannerList});
 
@@ -42,13 +43,13 @@ class _BannerWidgetState extends State<BannerWidget> {
     );
   }
 
-  Widget _tabImage(String item, double width) {
+  Widget _tabImage(CommonModel item, double width) {
     return GestureDetector(
       onTap: () {
         // NavigatorUtil.jumpH5(
         //     url: model.url, title: model.title, hideAppBar: model.hideAppBar);
       },
-      child: Image.network(item, width: width, fit: BoxFit.cover),
+      child: Image.network(item.icon!, width: width, fit: BoxFit.cover),
     );
   }
 

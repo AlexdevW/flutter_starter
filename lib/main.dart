@@ -11,11 +11,11 @@ import 'package:flutter_start/starter/vertical_list_page.dart';
 import 'package:flutter_start/util/screen_adapter_helper.dart';
 
 void main() {
-  // runApp(const MyApp());
+  runApp(const MyApp());
   // runApp(const VerticalListPage());
   // runApp(const HorizontalListPage());
   // runApp(const ExpansionTilePage());
-  runApp(const RefreshLoadMorePage());
+  // runApp(const RefreshLoadMorePage());
 }
 
 class MyApp extends StatelessWidget {
