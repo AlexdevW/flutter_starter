@@ -58,7 +58,7 @@ class _HiWebViewState extends State<HiWebView> {
     //处理Android物理返回键，返回H5的上一页 https://docs.flutter.dev/release/breaking-changes/android-predictive-back
     return PopScope(
       canPop: false,
-      onPopInvoked: (bool didPop) async {
+      onPopInvokedWithResult: (bool didPop, Object? result) async {
         if (await controller.canGoBack()) {
           //返回H5的上一页
           controller.goBack();
