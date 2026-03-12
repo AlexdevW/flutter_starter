@@ -2,11 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_start/dao/home_dao.dart';
 import 'package:flutter_start/dao/login_dao.dart';
 import 'package:flutter_start/model/home_model.dart';
+import 'package:flutter_start/pages/search_page.dart';
+import 'package:flutter_start/util/navigator_util.dart';
 import 'package:flutter_start/util/view_util.dart';
 import 'package:flutter_start/widget/banner_widget.dart';
 import 'package:flutter_start/widget/grid_nav_widget.dart';
 import 'package:flutter_start/widget/local_nav_widget.dart';
+import 'package:flutter_start/widget/sales_box_widget.dart';
+import 'package:flutter_start/widget/search_bar_widget.dart';
 import 'package:flutter_start/widget/sub_nav_widget.dart';
+
+const searchBarDefaultText = '网红打开地 景点 酒店 美食';
 
 class HomePage extends StatefulWidget {
   static Config? configModel;
@@ -24,6 +30,7 @@ class _HomePageState extends State<HomePage>
   List<CommonModel> bannerList = [];
   List<CommonModel> subNavList = [];
   GridNav? gridNavModel;
+  SalesBox? salesBoxModel;
   bool _loading = true;
 
   // final List<String> bannerList = [
@@ -51,11 +58,19 @@ class _HomePageState extends State<HomePage>
           child: Container(
             padding: EdgeInsets.only(top: top),
             height: 60 + top,
-            width: 200,
             decoration: BoxDecoration(
               color: Color.fromARGB((appBarAlpha * 255).toInt(), 255, 255, 255),
             ),
-            child: const Text('test'),
+            child: SearchBarWidget(
+              searchBarType: appBarAlpha > 0.2
+                  ? SearchBarType.homeLight
+                  : SearchBarType.home,
+              inputBoxClick: _jumpToSearch,
+              defaultText: searchBarDefaultText,
+              rightButtonClick: () {
+                LoginDao.logOut();
+              },
+            ),
           ),
         ),
         // bottom line
@@ -75,7 +90,9 @@ class _HomePageState extends State<HomePage>
       LocalNav(localNavList: localNavList),
       if (gridNavModel != null) GridNavWidget(gridNavModel: gridNavModel!),
       SubNavWidget(subNavList: subNavList),
-      // _logoutBtn,
+      if (salesBoxModel != null) SalesBoxWidget(salesBox: salesBoxModel!),
+      _logoutBtn,
+      const SizedBox(height: 800, child: ListTile(title: Text('Test'))),
     ],
   );
 
@@ -147,6 +164,7 @@ class _HomePageState extends State<HomePage>
         subNavList = model.subNavList ?? [];
         bannerList = model.bannerList ?? [];
         localNavList = model.localNavList ?? [];
+        salesBoxModel = model.salesBox;
         gridNavModel = model.gridNav;
         _loading = false;
       });
@@ -156,5 +174,9 @@ class _HomePageState extends State<HomePage>
         _loading = false;
       });
     }
+  }
+
+  void _jumpToSearch() {
+    NavigatorUtil.push(context, const SearchPage());
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_start/navigator/tab_navigator.dart';
 import 'package:flutter_start/pages/home_page.dart';
 import 'package:flutter_start/pages/login_page.dart';
 
@@ -10,7 +11,6 @@ class NavigatorUtil {
 
   static updateContext(BuildContext context) {
     NavigatorUtil._context = context;
-    print('init:$context');
   }
 
   ///跳转到指定页面
@@ -23,7 +23,7 @@ class NavigatorUtil {
     //跳转到主页并不让返回
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => const HomePage()),
+      MaterialPageRoute(builder: (context) => const TabNavigator()),
     );
   }
 
